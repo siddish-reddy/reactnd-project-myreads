@@ -36,7 +36,12 @@ To get started developing right away:
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
-
+## Features
+#### Goodreads kind of Bookshelves
+![Home Page](screenshots/homePage.PNG)
+#### Searching Books and added them
+![Search Page](screenshots/searchPage.PNG)
+![Adding collections](screenshots/AddingCollection.PNG)
 ## Backend Server
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
