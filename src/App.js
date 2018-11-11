@@ -1,10 +1,10 @@
 import React from 'react'
-import './App.css'
 import {Switch, Route} from 'react-router-dom'
 import {update, getAll} from './BooksAPI'
 import MyReads from './MyReads'
 import Search from './Search'
 import NoMatch from './404'
+import './App.css'
 
 class App extends React.Component {
     state ={
@@ -16,6 +16,7 @@ class App extends React.Component {
             this.setState(s=>({
                 books : s.books.filter(b=>b.title!==book.title).concat(book)
             }))
+            alert(book.title+ ' is added succesfully into "'+ shelf+'" shelf');
         })
     }
     componentDidMount(){
