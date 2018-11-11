@@ -12,17 +12,32 @@ class Search extends React.Component{
 
     
     handleInputChange = (event) =>{
+        let query = event.target.value
         this.setState({
             searchQuery: event.target.value
         })
-        search(this.state.searchQuery)
+        search(query)
         .then(results=>{
-            if(results){
-                this.setState({results})
+            if(query === this.state.searchQuery ){
+                // to ensure it is not going to replace the contents to an old response
+                if(results.length>=0){
+                    for ( let i=0; i< this.props.booksInShelf.length;i++){
+                        for ( let j=0; j< results.length;j++){
+                            if(this.props.booksInShelf[i].id === results[j].id){
+                                console.log("matched:", this.props.booksInShelf[i])
+                                results[j].shelf = this.props.booksInShelf[i].shelf
+                            }
+                            else{
+                                results[j].shelf ='none'
+                            }
+                        }
+                    }
+                    this.setState({results})
+                }
+                else this.setState({results:[]})
             }
-            else this.setState({results:[]})
         })
-    }
+}
 
     render() {
         return (
