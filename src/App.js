@@ -1,9 +1,10 @@
 import React from 'react'
 import './App.css'
-import {Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import {update, getAll} from './BooksAPI'
 import MyReads from './MyReads'
 import Search from './Search'
+import NoMatch from './404'
 
 class App extends React.Component {
     state ={
@@ -27,12 +28,15 @@ class App extends React.Component {
     render() {
         return (
             <div className='App'>
-                <Route path = '/search' 
-                    render={()=> <Search handleShelfChange = {this.handleShelfChange}/>}
-                />
-                <Route exact path='/'
-                    render ={()=> <MyReads books = {this.state.books} handleShelfChange = {this.handleShelfChange}/>}
-                />
+                <Switch>
+                    <Route path = '/search' 
+                            render={()=> <Search handleShelfChange = {this.handleShelfChange} booksInShelf = {this.state.books}/>}
+                    />
+                    <Route exact path='/'
+                            render ={()=> <MyReads books = {this.state.books} handleShelfChange = {this.handleShelfChange}/>}
+                    />
+                    <Route component={NoMatch} />
+                </Switch>
             </div>
         )
     }
